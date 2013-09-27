@@ -1,0 +1,22 @@
+<aura:component helper="js://toDoList.toDoFilter" controller="java://org.auraframework.controllers.ToDoListController">
+	<aura:attribute name="items" type="List"/>
+	<aura:attribute name="item" type="java://org.auraframework.util.json.Json"/>
+	<aura:attribute name="viewMode" type="Boolean" default="true"/>
+	<aura:attribute name="filter" type="String" />
+	
+	<aura:renderIf isTrue="{!!v.item.disabled &amp;&amp; ((v.filter == '') || (v.filter == 'Active' &amp;&amp; !v.item.selected) || (v.filter == 'Completed' &amp;&amp; v.item.selected))}">
+		<div>
+	   		<ui:inputCheckbox aura:id="inputCheckbox" value="{!v.item.selected}" class="line toggle" labelPosition="right" click="{!c.checkItem}"/>
+	   		
+	   		<aura:if isTrue="{!v.viewMode}">
+				<ui:outputText aura:id="labelOutput" value="{!v.item.name}" class="{!(v.item.selected == true) ? 'todo-item-name done' : 'todo-item-name'}" dblclick="{!c.editItem}" />
+		
+		   		<aura:set attribute="else">
+        			<ui:inputText aura:id="labelInput" value="{!v.item.name}" placeholder="{!v.item.label}" class="{!(v.item.selected == true) ? 'done labelInput' : 'labelInput'}" updateOn="keyup"  keypress="{!c.updateItemName}" />
+       			</aura:set>
+    		</aura:if>
+			
+			<ui:outputText value="" class="destroy" click="{!c.deleteItem}"/>
+		</div>
+	</aura:renderIf>
+</aura:component>

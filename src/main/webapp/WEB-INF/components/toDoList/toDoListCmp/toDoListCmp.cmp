@@ -1,0 +1,11 @@
+<aura:component model="java://org.auraframework.models.TodoModel" controller="java://org.auraframework.controllers.ToDoListController">
+  <aura:attribute name="filter" type="String" />
+  	
+  <ui:block aura:id="todosBlock" class="todosBlock">
+    <ui:inputText aura:id="newTodo" class="newTodo" updateOn="keyup" value="" placeholder="What needs to be done!" keypress="{!c.createNewTodo}"/>
+    <aura:iteration items="{!m.items}" var="toDoItem">
+        <toDoList:toDoItem aura:id="row" item="{!toDoItem}" items="{!m.items}" filter="{!v.filter}"/>        
+    </aura:iteration>
+    <toDoList:toDoFilter aura:id="filter" items="{!m.items}" filter="{!v.filter}"/>
+  </ui:block>
+</aura:component>

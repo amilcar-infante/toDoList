@@ -1,0 +1,9 @@
+.THIS.todo-list-title {
+	margin: 0 auto;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	font-size: 29px;
+	font-weight: bold;
+	padding-top: 20px;
+}
